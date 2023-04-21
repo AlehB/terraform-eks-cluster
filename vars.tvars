@@ -1,0 +1,22 @@
+### VPC variables
+
+aws_region 					= "us-east-1"
+eks_vpc_cidr 				= "10.10.0.0/16"
+eks_vpc_subnet_pub_cidr 	= "10.10.0.0/24"
+eks_vpc_subnet_pub_az 		= "us-east-1a"
+eks_vpc_subnet_priv_cidr_1 	= "10.10.1.0/24"
+eks_vpc_subnet_priv_az_1	= "us-east-1a"
+eks_vpc_subnet_priv_cidr_2 	= "10.10.2.0/24"
+eks_vpc_subnet_priv_az_2	= "us-east-1b"
+
+### EKS variables
+
+eks_cluster_name			= "eks-test"
+eks_nodes_disk_size			= "8"
+eks_nodes_instance_type		= "t2.small"
+eks_scaling_config_des		= "2"
+eks_scaling_config_max		= "2"
+eks_scaling_config_min		= "1"
+
+
+
