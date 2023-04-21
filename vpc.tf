@@ -60,7 +60,7 @@ resource "aws_nat_gateway" "eks_vpc_nat_gw" {
   }
 }
 
-# Creating Route table for Public Subnet
+# Creating Route table for Public Subnets
 resource "aws_route_table" "PublicRT" {
   vpc_id = aws_vpc.eks_vpc.id
   route {
@@ -68,11 +68,11 @@ resource "aws_route_table" "PublicRT" {
       gateway_id = aws_internet_gateway.eks_vpc_igw.id
   }
   tags = {
-      Name = "EKS VPC Public Subnet Route Table"
+      Name = "EKS VPC Public Subnets Route Table"
   }
 }
 
-# Creating Route table for Private Subnet
+# Creating Route table for Private Subnets
 resource "aws_route_table" "PrivateRT" {
   vpc_id = aws_vpc.eks_vpc.id
   route {
@@ -80,7 +80,7 @@ resource "aws_route_table" "PrivateRT" {
       nat_gateway_id = aws_nat_gateway.eks_vpc_nat_gw.id
   }
   tags = {
-      Name = "EKS VPC Private Subnet Route Table"
+      Name = "EKS VPC Private Subnets Route Table"
   }
 }
 
