@@ -55,15 +55,15 @@ resource "aws_iam_role_policy_attachment" "ecr_readonly_policy_attachment" {
 # Creating an EKS Cluster
 
 resource "aws_eks_cluster" "eks_cluster" {
-  depends_on = [ aws_iam_role_policy_attachment.eks_iam_policy_attachment ]
-  name     = var.eks_cluster_name
-  role_arn = aws_iam_role.eks_iam_role.arn
+  depends_on = [aws_iam_role_policy_attachment.eks_iam_policy_attachment]
+  name       = var.eks_cluster_name
+  role_arn   = aws_iam_role.eks_iam_role.arn
   vpc_config {
     subnet_ids = [aws_subnet.eks_vpc_public_subnet.id, aws_subnet.eks_vpc_private_subnet_1.id, aws_subnet.eks_vpc_private_subnet_2.id]
   }
   tags = {
-      Name = var.eks_cluster_name
-    }
+    Name = var.eks_cluster_name
+  }
 }
 
 # Creating Private EKS Node Group
@@ -87,10 +87,10 @@ resource "aws_eks_node_group" "eks_private_node_group" {
   }
 
   tags = {
-      Name = var.eks_cluster_name
-    }
+    Name = var.eks_cluster_name
+  }
 
-  # Ensure that Cluster and IAM Role permissions are created
+  # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling
   depends_on = [
     aws_eks_cluster.eks_cluster,
     aws_iam_role_policy_attachment.worker_node_policy_attachment,
